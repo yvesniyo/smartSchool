@@ -7,3 +7,10 @@
     <h4 class="text-dark">SmartSchool</h4>
 
 </a>
+
+<script>
+    let headerNavBar = document.querySelector(".app-header.navbar");
+    headerNavBar.classList.add("shadow-sm")
+    headerNavBar.classList.add("border-0")
+
+</script>
