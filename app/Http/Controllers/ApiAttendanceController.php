@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ResHelper;
+use App\Jobs\SendParentSmsStudentAttandanceJob;
 use App\Models\Attendancy;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -44,6 +45,12 @@ class ApiAttendanceController extends Controller
         if ($attendance) {
             return $res->message("Attendance successs");
         }
+
+        dispatch(new SendParentSmsStudentAttandanceJob($student, $attendance));
+
+
+        //$student = Student::first();$attendance = Attendancy::create(['student_id' => $student->id]);
+        //dispatch(new SendParentSmsStudentAttandanceJob($student, $attendance));
 
         return $res->error("There was an error in recording attendance");
     }
