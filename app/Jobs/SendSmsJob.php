@@ -47,12 +47,11 @@ class SendSmsJob implements ShouldQueue
 
         $url = Config::get("app.SMS_INTOUCH_SEND_URL");
 
-
         $response = Http::withBasicAuth(
             $this->smsApi->getUsername(),
             $this->smsApi->getPassword()
         )
-            ->retry(1, 1000)
+            ->retry(10, 1000)
             ->asForm()
             ->post($url, $datas);
         if ($response->ok()) {

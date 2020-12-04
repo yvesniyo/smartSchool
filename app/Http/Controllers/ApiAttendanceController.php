@@ -36,9 +36,7 @@ class ApiAttendanceController extends Controller
             return $res->error("Attended earlier, wait for 3 hours later");
         }
 
-        $attendance = Attendancy::create([
-            'student_id' => $student->id,
-        ]);
+        $attendance = Attendancy::create(['student_id' => $student->id]);
 
         if ($attendance) {
             return $res->message("Attendance successs");
