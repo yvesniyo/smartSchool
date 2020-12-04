@@ -15,10 +15,10 @@ class AttendancyObserver
      */
     public function created(Attendancy $attendancy)
     {
-        // if (!$attendancy->notified) {
-        $student = $attendancy->student;
-        // dispatch(new SendParentSmsStudentAttandanceJob($student, $attendancy));
-        // }
+        if (!$attendancy->notified) {
+            $student = $attendancy->student;
+            dispatch(new SendParentSmsStudentAttandanceJob($student, $attendancy));
+        }
     }
 
     /**
