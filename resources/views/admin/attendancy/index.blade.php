@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col">
-            <div class="card">
+            <div class="card shadow-sm border-0">
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> {{ trans('admin.attendancy.actions.index') }}
                     <a class="btn btn-primary btn-sm pull-right m-b-0 ml-2" href="{{ url('admin/attendancies/export') }}" role="button"><i class="fa fa-file-excel-o"></i>&nbsp; {{ trans('admin.attendancy.actions.export') }}</a>

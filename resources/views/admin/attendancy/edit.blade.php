@@ -5,7 +5,7 @@
 @section('body')
 
 <div class="container-xl">
-    <div class="card">
+    <div class="card shadow-sm border-0">
 
         <attendancy-form :students="{{$students->toJson()}}" :action="'{{ $attendancy->resource_url }}'" :data="{{ $attendancy->toJson() }}" v-cloak inline-template>
 

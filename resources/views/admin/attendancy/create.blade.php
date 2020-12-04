@@ -6,7 +6,7 @@
 
 <div class="container-xl">
 
-    <div class="card">
+    <div class="card shadow-sm border-0">
 
         <attendancy-form :students="{{$students->toJson()}}" :action="'{{ url('admin/attendancies') }}'" v-cloak inline-template>
 
