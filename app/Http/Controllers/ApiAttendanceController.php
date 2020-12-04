@@ -17,8 +17,8 @@ class ApiAttendanceController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            "uuid" => "required|exists:devices,uuid",
-            "nfc" => "required|exists:students,nfc",
+            "uuid" => "required",
+            "nfc" => "required",
         ]);
 
         if ($validator->fails()) {
@@ -28,6 +28,9 @@ class ApiAttendanceController extends Controller
         $nfc = str_replace(" ", "", $nfc);
 
         $student = Student::where("nfc", $nfc)->first();
+        if ($student == null) {
+            return $res->error("Unknown NFC");
+        }
 
         $attendendedInTime = Attendancy::where("student_id", $student->id)
             ->where("created_at", ">=", now()->subHours(3))
