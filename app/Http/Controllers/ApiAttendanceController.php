@@ -49,8 +49,9 @@ class ApiAttendanceController extends Controller
         dispatch(new SendParentSmsStudentAttandanceJob($student, $attendance));
 
 
-        //$student = Student::first();$attendance = Attendancy::create(['student_id' => $student->id]);
-        //dispatch(new SendParentSmsStudentAttandanceJob($student, $attendance));
+        $student = Student::first();
+        $attendance = Attendancy::create(['student_id' => $student->id]);
+        dispatch(new SendParentSmsStudentAttandanceJob($student, $attendance));
 
         return $res->error("There was an error in recording attendance");
     }
