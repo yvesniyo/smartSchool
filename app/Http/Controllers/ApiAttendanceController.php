@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Validator;
 class ApiAttendanceController extends Controller
 {
 
-
-
     public function record(Request $request, ResHelper $res)
     {
 
