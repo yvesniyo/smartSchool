@@ -37,21 +37,16 @@ class ApiAttendanceController extends Controller
             ->where("created_at", ">=", now()->subHours(3))
             ->exists();
         if ($attendendedInTime) {
-            return $res->error("Attended earlier, wait for 3 hours later");
+            //return $res->error("Attended earlier, wait for 3 hours later");
         }
 
         $attendance = Attendancy::create(['student_id' => $student->id]);
+
+        dispatch(new SendParentSmsStudentAttandanceJob($student, $attendance));
 
         if ($attendance) {
             return $res->message("Attendance successs");
         }
-
-        dispatch(new SendParentSmsStudentAttandanceJob($student, $attendance));
-
-
-        $student = Student::first();
-        $attendance = Attendancy::create(['student_id' => $student->id]);
-        dispatch(new SendParentSmsStudentAttandanceJob($student, $attendance));
 
         return $res->error("There was an error in recording attendance");
     }
